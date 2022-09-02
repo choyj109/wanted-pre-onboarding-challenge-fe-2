@@ -1,5 +1,7 @@
 # TodoList
 
+https://choyj109.github.io/wanted-pre-onboarding-challenge-fe-2/docs/index.html
+
 ## 자기소개
 
 코드의 통일성을 가지고 체계화시키는 것을 목표로 하는 프론트엔드 신입 개발 취준생입니다. 서울시에서 주관하는 [새싹 DT 마포캠퍼스 - 기업연계형 프론트엔드 실무 프로젝트 과정]을 이수했습니다. 3개월의 기간동안 html,css,javascript,react의 교육과정을 통해 기본기를 쌓아나갈 수 있었습니다.
