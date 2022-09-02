@@ -1,6 +1,6 @@
 # TodoList
 
-https://choyj109.github.io/wanted-pre-onboarding-challenge-fe-2/docs/index.html
+[TodoList](https://choyj109.github.io/wanted-pre-onboarding-challenge-fe-2/docs/index.html)
 
 ## 자기소개
 
