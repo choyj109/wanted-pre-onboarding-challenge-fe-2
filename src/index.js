@@ -1,68 +1,46 @@
 /**
- * Todo
+ * Todo - 할 일
  * @typeof {Object} Todo
  * @property {number} id - Todo id(required)
  * @property {string} text - Todo text(required)
  * @property {boolean} checked - Todo checked(required)
  * @property {string} category - Todo category(required)
- * @property {string} [tags] - Todo tags(optional)
+ * @property {string[]} [tags] - Todo tags(optional)
  */
-const Todo = {
-  id: 1,
-  text: "todo",
-  checked: false,
-  category: "A",
-  tags: ["todo", "list"],
-};
+const Todo = {};
 
 /**
- * Represents a book.
- * @constructor
- * @param {string} title - The title of the book.
- * @param {string} author - The author of the book.
+ * createTodo - 추가
+ * @funtion createTodo
+ * @param {string} text - Todo text(required)
+ * @param {string} category - Todo category(required)
+ * @param {string[]} tags - Todo tags(optional)
  */
-function Book(title, author) {}
+const createTodo = ({ text, category, tags }) => {};
 
 /**
- * Both of these will link to the bar function.
- * @see {@link bar}
- * @see bar
+ * readTodo - 조회
+ * @function readTodo
+ * @param {number} id - Todo id(required)
  */
-function foo() {}
-
-// Use the inline {@link} tag to include a link within a free-form description.
-/**
- * @see {@link foo} for further information.
- * @see {@link http://github.com|GitHub}
- */
-function bar() {}
+const readTodo = (id) => {};
 
 /**
- * Generic dairy product.
- * @constructor
+ * updateTodo - 수정
+ * @param {string} text - Todo text(required)
+ * @param {string} category - Todo category(required)
+ * @param {string[]} tags - Todo tags(optional)
  */
-function DairyProduct() {}
+const updateTodo = ({ text, category, tags }) => {};
 
 /**
- * Check whether the dairy product is solid at room temperature.
- * @abstract
- * @return {boolean}
+ * deleteTodo - 삭제
+ * @param {number} id - Todo id(required)
  */
-DairyProduct.prototype.isSolid = function () {
-  throw new Error("must be implemented by subclass!");
-};
+const deleteTodo = ({ id }) => {};
 
 /**
- * Cool, refreshing milk.
- * @constructor
- * @augments DairyProduct
+ * deleteAllTodo - 전부 삭제
+ * @param {number} id - Todo id(required)
  */
-function Milk() {}
-
-/**
- * Check whether milk is solid at room temperature.
- * @return {boolean} Always returns false.
- */
-Milk.prototype.isSolid = function () {
-  return false;
-};
+const deleteAllTodo = ({ id }) => {};
