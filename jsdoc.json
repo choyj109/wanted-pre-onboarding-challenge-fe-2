@@ -1,5 +1,9 @@
 {
-  "plugins": [],
+  "plugins": ["plugins/markdown"],
+  "opts": {
+    "encoding": "utf8",
+    "readme": "README.md"
+  },
   "recurseDepth": 10,
   "source": {
     "include": ["src"],
