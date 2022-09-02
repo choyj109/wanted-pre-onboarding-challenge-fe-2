@@ -1,9 +1,9 @@
 {
-  "plugins": ["plugins/markdown"],
+  "plugins": [],
+  "recurseDepth": 10,
   "source": {
-    "include": ["src/"],
-    "includePattern": ".js$",
-    "excludePattern": "(node_modules/|docs)_"
+    "includePattern": ".+\\.js(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
   },
   "sourceType": "module",
   "tags": {
@@ -11,12 +11,7 @@
     "dictionaries": ["jsdoc", "closure"]
   },
   "templates": {
-    "cleverLinks": true,
+    "cleverLinks": false,
     "monospaceLinks": false
-  },
-  "opts": {
-    "encoding": "utf8",
-    "destination": "./docs/",
-    "recurse": true
   }
 }
