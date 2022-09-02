@@ -1,22 +1,16 @@
 {
-  "plugins": ["plugins/markdown"],
   "source": {
-    "include": ["src/"],
+    "include": ["src"],
     "includePattern": ".js$",
-    "excludePattern": "(node_modules/|docs)_"
+    "excludePattern": "(node_modules/|docs)"
   },
-  "sourceType": "module",
-  "tags": {
-    "allowUnknownTags": true,
-    "dictionaries": ["jsdoc", "closure"]
-  },
+  "plugins": ["node_modules/jsdoc/plugins/markdown"],
   "templates": {
     "cleverLinks": true,
-    "monospaceLinks": false
+    "monospaceLinks": true
   },
   "opts": {
-    "encoding": "utf8",
-    "destination": "./docs/",
-    "recurse": true
+    "recurse": true,
+    "destination": "./docs/"
   }
 }
