@@ -1,4 +1,21 @@
 /**
+ * Todo
+ * @typeof {Object} Todo
+ * @property {number} id - Todo id(required)
+ * @property {string} text - Todo text(required)
+ * @property {boolean} checked - Todo checked(required)
+ * @property {string} category - Todo category(required)
+ * @property {string} [tags] - Todo tags(optional)
+ */
+const Todo = {
+  id: 1,
+  text: "todo",
+  checked: false,
+  category: "A",
+  tags: ["todo", "list"],
+};
+
+/**
  * Represents a book.
  * @constructor
  * @param {string} title - The title of the book.
@@ -32,7 +49,7 @@ function DairyProduct() {}
  * @return {boolean}
  */
 DairyProduct.prototype.isSolid = function () {
-	throw new Error('must be implemented by subclass!');
+  throw new Error("must be implemented by subclass!");
 };
 
 /**
@@ -47,5 +64,5 @@ function Milk() {}
  * @return {boolean} Always returns false.
  */
 Milk.prototype.isSolid = function () {
-	return false;
+  return false;
 };
