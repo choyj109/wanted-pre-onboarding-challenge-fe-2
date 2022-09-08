@@ -7,23 +7,44 @@
  * @property {string} category - Todo category(required)
  * @property {string[]} [tags] - Todo tags(optional)
  */
-const Todo = {};
+class Todo {
+  constructor({ id, content, checked, category, tags }) {
+    this.id = id;
+    this.content = content;
+    this.checked = checked;
+    this.category = category;
+    this.tags = tags;
+  }
+}
+
+class TodoList {
+  constructor() {
+    this.todoLists = [];
+  }
+}
 
 /**
  * createTodo - 추가
  * @funtion createTodo
+ * @param {string} id - Todo id(required)
  * @param {string} text - Todo text(required)
  * @param {string} category - Todo category(required)
+ * @param {boolean} checked - Todo checked(required)
  * @param {string[]} tags - Todo tags(optional)
  */
-const createTodo = ({ text, category, tags }) => {};
+const createTodo = ({ id, text, category, checked, tags }) => {
+  const todo = new Todo({ id, text, category, checked, tags });
+  this.todoLists.push(todo);
+};
 
 /**
  * getTodo - 목록 가져오기
  * @function getTodo
  * @return {Array} Todo
  */
-const getTodo = () => {};
+const getTodo = () => {
+  return this.todoLists;
+};
 
 /**
  * readTodo - 조회
@@ -31,7 +52,9 @@ const getTodo = () => {};
  * @param {string} id - Todo id(required)
  * @return {Array} Todo
  */
-const readTodo = (id) => {};
+const readTodo = (id) => {
+  return this.todoLists.find((todoList) => todoList.id === id);
+};
 
 /**
  * updateTodo - 수정
@@ -41,7 +64,15 @@ const readTodo = (id) => {};
  * @param {string} category - Todo category(required)
  * @return Todo
  */
-const updateTodo = (id) => {};
+const updateTodo = ({ id, text, category }) => {
+  const todoList = this.todoLists.find((todoList) => todoList.id === id);
+  const index = this.todoLists.findIndex((todoList) => todoList.id === id);
+  this.todoLists[index] = {
+    ...todoList,
+    text: text ?? todoList.text,
+    category: category ?? todoList.category,
+  };
+};
 
 /**
  * updateTagTodo - 태그 수정
@@ -50,31 +81,64 @@ const updateTodo = (id) => {};
  * @param {string[]} tags - Todo tags(optional)
  * @return {Array} Todo
  */
-const updateTagTodo = ({ id, tag }) => {};
+const updateTagTodo = ({ id, tag }) => {
+  const todoList = this.todoLists.find((todoList) => todoList.id === id);
+  const todoIndex = this.todoLists.findIndex((todoList) => todoList.id === id);
+  const tags = this.todoLists[todoIndex].tags;
+
+  const newTags = tags.map((tag) =>
+    tag.id === id ? { ...tag, tag: tag } : tag
+  );
+
+  this.todoLists[todoIndex] = {
+    ...todoList,
+    tags: newTags,
+  };
+};
 
 /**
  * deleteTodo - 삭제
  * @function deleteTodo
  * @param {string} id - Todo id(required)
  */
-const deleteTodo = ({ id }) => {};
+const deleteTodo = ({ id }) => {
+  this.todoLists = this.todoLists.filter((todoList) => todoList.id !== id);
+};
 
 /**
  * deleteAllTodo - 전부 삭제
 @function deleteAllTodo
  */
-const deleteAllTodo = () => {};
+const deleteAllTodo = () => {
+  this.todoLists = [];
+};
 
 /**
  * deleteAllTagTodo - 태그 전부 삭제
  * @param {string} id - Todo id(required)
  * @param {string} tag - Todo tag(optional)
  */
-const deleteAllTagTodo = ({ id, tag }) => {};
+const deleteAllTagTodo = ({ id, tag }) => {
+  const todoList = this.todoLists.find((todoList) => todoList.id === id);
+  const todoIndex = this.todoLists.findIndex((todoList) => todoList.id === id);
+  const tags = this.todoLists[todoIndex].tags;
+
+  this.todoLists[todoIndex] = {
+    ...todoList,
+    tags: [],
+  };
+};
 
 /**
  * isChecked - 완료 여부
  * @param {string} id - Todo id(required)
  * @param {boolean} checked - Todo checked(required)
  */
-const isChecked = ({ id, checked }) => {};
+const isChecked = ({ id, checked }) => {
+  const todoList = this.todoLists.find((todoList) => todoList.id === id);
+  const index = this.todoLists.findIndex((todoList) => todoList.id === id);
+  this.todoLists[index] = {
+    ...todoList,
+    checked: checked ?? todoList.checked,
+  };
+};
