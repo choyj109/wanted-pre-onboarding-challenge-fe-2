@@ -1,17 +1,12 @@
 /**
- * Todo - 할 일
- * @typeof {Object} Todo
- * @property {string} id - Todo id(required)
- * @property {string} text - Todo text(required)
- * @property {boolean} checked - Todo checked(required)
- * @property {string} category - Todo category(required)
- * @property {string[]} [tags] - Todo tags(optional)
+ * @description Todo model
  */
+
 class Todo {
-  constructor({ id, content, checked, category, tags }) {
+  constructor({ id, content, isDone, category, tags }) {
     this.id = id;
     this.content = content;
-    this.checked = checked;
+    this.isDone = isDone;
     this.category = category;
     this.tags = tags;
   }
@@ -21,124 +16,225 @@ class TodoList {
   constructor() {
     this.todoLists = [];
   }
+
+  createTodo({ id, content, isDone, category, tags }) {
+    const todo = new Todo({ id, content, isDone, category, tags });
+    this.todoLists.push(todo);
+  }
+
+  readTodo(id) {
+    return this.todoLists.find((todoList) => todoList.id === id);
+  }
+
+  readAllTodo() {
+    return this.todoLists;
+  }
+
+  updateTodo({ id, content, isDone, category, tags }) {
+    const todoList = this.todoLists.find((todoList) => todoList.id === id);
+    const index = this.todoLists.findIndex((todoList) => todoList.id === id);
+
+    this.todoLists[index] = {
+      ...todoList,
+      content: content ?? todoList.content,
+      isDone: isDone ?? todoList.isDone,
+      category: category ?? todoList.category,
+      tags: tags ?? todoList.tags,
+    };
+  }
+
+  updateTags({ id, tagId, tagName }) {
+    const todoList = this.todoLists.find((todoList) => todoList.id === id);
+    const todoIndex = this.todoLists.findIndex(
+      (todoList) => todoList.id === id
+    );
+    const tags = this.todoLists[todoIndex].tags;
+
+    const newTags = tags.map((tag) =>
+      tag.id === tagId ? { ...tag, tag: tagName } : tag
+    );
+
+    this.todoLists[todoIndex] = {
+      ...todoList,
+      tags: newTags,
+    };
+  }
+
+  deleteTodo(id) {
+    this.todoLists = this.todoLists.filter((todoList) => todoList.id !== id);
+  }
+
+  deleteAllTodo() {
+    this.todoLists = [];
+  }
+
+  deleteTag({ id, tagId }) {
+    const todoList = this.todoLists.find((todoList) => todoList.id === id);
+    const todoIndex = this.todoLists.findIndex(
+      (todoList) => todoList.id === id
+    );
+    const tags = this.todoLists[todoIndex].tags;
+
+    this.todoLists[todoIndex] = {
+      ...todoList,
+      tags: tags.filter((tag) => tag.id !== tagId),
+    };
+  }
+
+  deleteAllTag(id) {
+    const todoList = this.todoLists.find((todoList) => todoList.id === id);
+    const todoIndex = this.todoLists.findIndex(
+      (todoList) => todoList.id === id
+    );
+
+    this.todoLists[todoIndex] = {
+      ...todoList,
+      tags: [],
+    };
+  }
 }
 
-/**
- * createTodo - 추가
- * @funtion createTodo
- * @param {string} id - Todo id(required)
- * @param {string} text - Todo text(required)
- * @param {string} category - Todo category(required)
- * @param {boolean} checked - Todo checked(required)
- * @param {string[]} tags - Todo tags(optional)
- */
-const createTodo = ({ id, text, category, checked, tags }) => {
-  const todo = new Todo({ id, text, category, checked, tags });
-  this.todoLists.push(todo);
-};
+const todoList = new TodoList();
+const todo = new Todo({
+  id: 1,
+  content: "동영상 강의 보기",
+  isDone: true,
+  category: "공부",
+  tags: [
+    {
+      id: 1,
+      tag: "0904",
+    },
+    {
+      id: 2,
+      tag: "2022",
+    },
+  ],
+});
+
+const todo2 = new Todo({
+  id: 2,
+  content: "책 읽기",
+  isDone: false,
+  category: "일상",
+  tags: [
+    {
+      id: 1,
+      tag: "0908",
+    },
+    {
+      id: 2,
+      tag: "2022",
+    },
+  ],
+});
+
+todoList.createTodo(todo);
+todoList.createTodo(todo2);
+
+todoList.readAllTodo();
+todoList.readTodo(2);
+
+todoList.updateTodo({
+  id: 1,
+  isDone: true,
+});
+
+todoList.updateTags({ id: 1, tagId: 1, tagName: "hihihi" });
+
+todoList.deleteTodo(2);
+todoList.deleteAllTodo();
+
+todoList.deleteTag({
+  id: 1,
+  tagId: 1,
+});
+
+todoList.deleteAllTag(1);
+
+import { ITag } from "./interface";
 
 /**
- * getTodo - 목록 가져오기
- * @function getTodo
- * @return {Array} Todo
+ * @function
+ * @name createTodo
+ * @description Todo 생성
+ * @param {number} id
+ * @param {string} content
+ * @param {boolean} [isDone=false]
+ * @param {string} [category=null]
+ * @param {ITag[]} [tags=[]]
  */
-const getTodo = () => {
-  return this.todoLists;
-};
+
+export const createTodo = ({ id, content, isDone, category, tags }) => {};
 
 /**
- * readTodo - 조회
- * @function readTodo
- * @param {string} id - Todo id(required)
- * @return {Array} Todo
+ * @function
+ * @name readTodo
+ * @description 특정 id의 Todo 조회
+ * @param {number} id
+ * @returns {object}
  */
-const readTodo = (id) => {
-  return this.todoLists.find((todoList) => todoList.id === id);
-};
+export const readTodo = (id) => {};
 
 /**
- * updateTodo - 수정
- * @function updateTodo
- * @param {string} id - Todo id(required)
- * @param {string} text - Todo text(required)
- * @param {string} category - Todo category(required)
- * @return Todo
+ * @function
+ * @name readAllTodo
+ * @description 모든 Todo 조회
+ * @returns {object}
  */
-const updateTodo = ({ id, text, category }) => {
-  const todoList = this.todoLists.find((todoList) => todoList.id === id);
-  const index = this.todoLists.findIndex((todoList) => todoList.id === id);
-  this.todoLists[index] = {
-    ...todoList,
-    text: text ?? todoList.text,
-    category: category ?? todoList.category,
-  };
-};
+export const readAllTodo = () => {};
 
 /**
- * updateTagTodo - 태그 수정
- * @funtion updateTagTodo
- * @param {string} id - Todo id(required)
- * @param {string[]} tags - Todo tags(optional)
- * @return {Array} Todo
+ * @function
+ * @name updateTodo
+ * @description 특정 Id Todo update
+ * @param {number} id
+ * @param {string} [content]
+ * @param {boolean} [isDone]
+ * @param {string} [category]
+ * @param {ITag[]} [tags]
  */
-const updateTagTodo = ({ id, tag }) => {
-  const todoList = this.todoLists.find((todoList) => todoList.id === id);
-  const todoIndex = this.todoLists.findIndex((todoList) => todoList.id === id);
-  const tags = this.todoLists[todoIndex].tags;
 
-  const newTags = tags.map((tag) =>
-    tag.id === id ? { ...tag, tag: tag } : tag
-  );
-
-  this.todoLists[todoIndex] = {
-    ...todoList,
-    tags: newTags,
-  };
-};
+export const updateTodo = ({ id, content, isDone, category, tags }) => {};
 
 /**
- * deleteTodo - 삭제
- * @function deleteTodo
- * @param {string} id - Todo id(required)
+ * @function
+ * @name updateTodo
+ * @description 특정 Todo의 특정 tag 수정
+ * @param {number} id
+ * @param {number} tagId
+ * @param {string} tag
  */
-const deleteTodo = ({ id }) => {
-  this.todoLists = this.todoLists.filter((todoList) => todoList.id !== id);
-};
+export const updateTags = ({ id, tagId, tag }) => {};
 
 /**
- * deleteAllTodo - 전부 삭제
-@function deleteAllTodo
+ * @function
+ * @name deleteTodo
+ * @description 특정 id Todo 삭제
+ * @param {number} id
  */
-const deleteAllTodo = () => {
-  this.todoLists = [];
-};
+export const deleteTodo = (id) => {};
 
 /**
- * deleteAllTagTodo - 태그 전부 삭제
- * @param {string} id - Todo id(required)
- * @param {string} tag - Todo tag(optional)
+ * @function
+ * @name deleteTodo
+ * @description 모든 Todo 삭제
  */
-const deleteAllTagTodo = ({ id, tag }) => {
-  const todoList = this.todoLists.find((todoList) => todoList.id === id);
-  const todoIndex = this.todoLists.findIndex((todoList) => todoList.id === id);
-  const tags = this.todoLists[todoIndex].tags;
-
-  this.todoLists[todoIndex] = {
-    ...todoList,
-    tags: [],
-  };
-};
+export const deleteAllTodo = () => {};
 
 /**
- * isChecked - 완료 여부
- * @param {string} id - Todo id(required)
- * @param {boolean} checked - Todo checked(required)
+ * @function
+ * @name deleteTag
+ * @description 특정 Todo의 특정 tag 삭제
+ * @param {number} id
+ * @param {number} tagId
  */
-const isChecked = ({ id, checked }) => {
-  const todoList = this.todoLists.find((todoList) => todoList.id === id);
-  const index = this.todoLists.findIndex((todoList) => todoList.id === id);
-  this.todoLists[index] = {
-    ...todoList,
-    checked: checked ?? todoList.checked,
-  };
-};
+export const deleteTag = ({ id, tagId }) => {};
+
+/**
+ * @function
+ * @name deleteAllTag
+ * @description 특정 Todo의 모든 tag 삭제
+ * @param {number} id
+ */
+export const deleteAllTag = (id) => {};
