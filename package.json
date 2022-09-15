@@ -1,50 +1,49 @@
 {
-  "name": "jsdoc-boilerplate",
-  "version": "1.0.0",
-  "description": "TodoList",
-  "main": "index.js",
-  "scripts": {
-    "docs": "jsdoc -c jsdoc.json"
-  },
-  "devDependencies": {
-    "jsdoc": "^3.6.11"
-  },
-  "directories": {
-    "doc": "docs"
-  },
+  "name": "onboarding2",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "http://choyj109.github.io/wanted-pre-onboarding-challenge-fe-2",
   "dependencies": {
-    "argparse": "^2.0.1",
-    "bluebird": "^3.7.2",
-    "catharsis": "^0.9.0",
-    "docdash": "^1.2.0",
-    "entities": "^2.1.0",
-    "escape-string-regexp": "^2.0.0",
-    "graceful-fs": "^4.2.10",
-    "js2xmlparser": "^4.0.2",
-    "klaw": "^3.0.0",
-    "linkify-it": "^3.0.3",
-    "lodash": "^4.17.21",
-    "markdown-it": "^12.3.2",
-    "markdown-it-anchor": "^8.6.4",
-    "marked": "^4.1.0",
-    "mdurl": "^1.0.1",
-    "mkdirp": "^1.0.4",
-    "requizzle": "^0.2.3",
-    "strip-json-comments": "^3.1.1",
-    "taffydb": "^2.6.2",
-    "uc.micro": "^1.0.6",
-    "underscore": "^1.13.4",
-    "xmlcreate": "^2.0.4"
+    "@reduxjs/toolkit": "^1.8.5",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "axios": "^0.27.2",
+    "better-docs": "^2.7.2",
+    "gh-pages": "^4.0.0",
+    "jsdoc": "^3.6.11",
+    "jsdoc-react": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/choyj109/wanted-pre-onboarding-challenge-fe-2_1.git"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "docs": "jsdoc -c jsdoc.conf.json",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/choyj109/wanted-pre-onboarding-challenge-fe-2_1/issues"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "homepage": "https://github.com/choyj109/wanted-pre-onboarding-challenge-fe-2_1#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
